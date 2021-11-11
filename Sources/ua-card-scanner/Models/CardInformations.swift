@@ -8,8 +8,8 @@
 import Foundation
 
 public struct CardInformations: Hashable, CustomStringConvertible {
-    let cardNumber: String?
-    let cardExpirationDate: String?
+    public let cardNumber: String?
+    public let cardExpirationDate: String?
     
     // MARK: - CustomStringConvertible
     public var description: String {
