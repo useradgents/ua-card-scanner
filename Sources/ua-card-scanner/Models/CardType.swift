@@ -14,29 +14,28 @@ public enum CardType: CaseIterable {
     case amex
     case dinersClub
     case discover
-    
-    // swiftlint:disable cyclomatic_complexity
+        
+    // Check if all rules are respected
     func isValid(cardNumber: String) -> Bool {
         guard luhnCheck(cardNumber) else { return false }
-        
-        switch self {
-        case .cb:
-            guard cardNumber.count == 16 else { return false }
-        case .visa:
-            guard cardNumber.count == 16 else { return false }
-        case .mastercard:
-            guard cardNumber.count == 16 else { return false }
-        case .amex:
-            guard cardNumber.count == 15 else { return false }
-        case .dinersClub:
-            guard cardNumber.count == 14 else { return false }
-        case .discover:
-            guard cardNumber.count == 16 else { return false }
-        }
-        
+        guard cardNumberCountCheck(cardNumber) else { return false }
+                
         return true
     }
     
+    // Check if card number count match with count required according to type
+    private func cardNumberCountCheck(_ number: String) -> Bool {
+        switch self {
+        case .cb, .visa, .mastercard, .discover:
+            return number.count == 16
+        case .amex:
+            return number.count == 15
+        case .dinersClub:
+            return number.count == 14
+        }
+    }
+
+    // Check if card number match with Luhn algorithm
     private func luhnCheck(_ number: String) -> Bool {
         guard CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: number)) else { return false }
 

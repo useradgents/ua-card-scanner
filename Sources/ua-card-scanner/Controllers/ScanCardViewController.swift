@@ -42,7 +42,7 @@ public class ScanCardViewController: UIViewController {
     
     // MARK: - Initializers
     public init(cardsTypeAuthorized: [CardType] = CardType.allCases,
-         delegate: ScanCardViewControllerDelegate?) {
+                delegate: ScanCardViewControllerDelegate?) {
         self.cardsTypeAuthorized = cardsTypeAuthorized
         self.delegate = delegate
 
@@ -172,8 +172,8 @@ public class ScanCardViewController: UIViewController {
 extension ScanCardViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
     public func captureOutput(_ output: AVCaptureOutput,
-                       didOutput sampleBuffer: CMSampleBuffer,
-                       from connection: AVCaptureConnection) {
+                              didOutput sampleBuffer: CMSampleBuffer,
+                              from connection: AVCaptureConnection) {
         guard let frame = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             debugPrint("unable to get image from sample buffer")
             return
