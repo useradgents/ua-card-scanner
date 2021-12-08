@@ -137,7 +137,11 @@ public class ScanCardViewController: UIViewController {
            let cardNumber = cardNumbersRecognized {
             guard checkCardNumber(cardNumber) else { return }
 
-            let cardInformations = CardInformations(cardNumber: cardNumber,
+            let cardType = cardsTypeAuthorized.count == 1
+                ? cardsTypeAuthorized.first
+                : cardNumber.cardType
+            let cardInformations = CardInformations(cardType: cardType,
+                                                    cardNumber: cardNumber,
                                                     cardExpirationDate: expiredDateRecognized)
             let newValue = (resultCount[cardInformations] ?? 0) + 1
             resultCount[cardInformations] = newValue

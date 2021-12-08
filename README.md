@@ -55,7 +55,7 @@ struct ContentView: View {
 ```
 
     
-`cardsTypeAuthorized` take en array of CardType. If you pass this paramater, ua-card-scanner return cardInformations by delegate only if the card number detected match with rules of one cardType
+`cardsTypeAuthorized` take en array of `CardType`. If you pass this paramater, ua-card-scanner return cardInformations by delegate only if the card number detected match with rules of one cardType
 
 `CardType` available
 
@@ -65,8 +65,8 @@ enum CardType {
     case visa
     case mastercard
     case amex
-    case dinersClub
-    case discover
+    
+    case carteVitale
 }
 ```
     
