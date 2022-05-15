@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -14,6 +14,8 @@
             <connections>
                 <outlet property="cameraPreviewView" destination="cOx-sO-kIy" id="G2K-qd-9L2"/>
                 <outlet property="dismissButton" destination="kyP-gI-X3m" id="KD1-aB-0ZQ"/>
+                <outlet property="headerView" destination="Eua-rS-gaJ" id="f3e-fR-WB2"/>
+                <outlet property="mainStackView" destination="P0x-qi-df1" id="boB-4r-K4i"/>
                 <outlet property="overlayView" destination="I3y-I9-WsH" id="OsI-6x-Wfv"/>
                 <outlet property="titleLabel" destination="m0x-k1-nes" id="Dln-eA-tX3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -90,7 +92,6 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="P0x-qi-df1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1DQ-7K-83M"/>
-                <constraint firstAttribute="bottom" secondItem="P0x-qi-df1" secondAttribute="bottom" id="auC-fo-gTA"/>
                 <constraint firstItem="P0x-qi-df1" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="jXm-qI-BA4"/>
                 <constraint firstItem="P0x-qi-df1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nAX-uD-yCo"/>
             </constraints>
@@ -98,7 +99,7 @@
         </view>
     </objects>
     <resources>
-        <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="xmark" catalog="system" width="32" height="32"/>
         <namedColor name="gray28">
             <color red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -10,6 +10,7 @@ import Foundation
 public struct CardInformations: Hashable, CustomStringConvertible {
     public let cardNumber: String?
     public let cardExpirationDate: String?
+    public let cardType: CardType
     
     // MARK: - CustomStringConvertible
     public var description: String {

@@ -14,12 +14,14 @@ public protocol ScanCardViewControllerDelegate: AnyObject {
     func cardInformationDidFind(_ scanCardViewController: ScanCardViewController, cardInformations: CardInformations)
 }
 
-public class ScanCardViewController: UIViewController {
+open class ScanCardViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dismissButton: UIButton!
     @IBOutlet private weak var cameraPreviewView: UIView!
-    @IBOutlet private weak var overlayView: UIView!
-
+    @IBOutlet public weak var overlayView: UIView!
+    @IBOutlet public weak var mainStackView: UIStackView!
+    @IBOutlet public weak var headerView: UIView!
+    
     private let cardsTypeAuthorized: [CardType]
     private weak var delegate: ScanCardViewControllerDelegate?
 
@@ -49,11 +51,11 @@ public class ScanCardViewController: UIViewController {
         super.init(nibName: "ScanCardViewController", bundle: Bundle.module)
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
         
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         let appearance = UINavigationBar.appearance()
@@ -61,17 +63,20 @@ public class ScanCardViewController: UIViewController {
         titleLabel.textColor = titleColor
         
         dismissButton.setTitle("", for: .normal)
-        
-        self.setupCaptureSession()
+
     }
-    
-    public override func viewDidAppear(_ animated: Bool) {
+    override public func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        setupCaptureSession()
+    }
+
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         overlayView.isHidden = true
     }
     
-    public override func viewDidLayoutSubviews() {
+    open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         self.previewLayer.frame = self.view.bounds
@@ -133,12 +138,14 @@ public class ScanCardViewController: UIViewController {
             ? String(expiredDateRecognizedSub ?? "")
             : nil
 
+        let cardType = CardType.cardType(cardNumbersRecognized)
         if !resultFound,
            let cardNumber = cardNumbersRecognized {
             guard checkCardNumber(cardNumber) else { return }
 
             let cardInformations = CardInformations(cardNumber: cardNumber,
-                                                    cardExpirationDate: expiredDateRecognized)
+                                                    cardExpirationDate: expiredDateRecognized,
+                                                    cardType: cardType)
             let newValue = (resultCount[cardInformations] ?? 0) + 1
             resultCount[cardInformations] = newValue
             
